@@ -3,7 +3,7 @@ FirebaseUI-Android-Addons is a set of non-essential addons to Firebase's open so
 back UI views such as Spinners to the [Firebase Realtime Database](https://firebase.google.com/docs/database/).
 
 As for right now, there is no iOS equivalent. If you have any desire to create one, 
-please notfy me so I can link to it.
+please notify me so I can link to it.
 
 ## Usage
 ### FirebaseSpinnerAdapter
