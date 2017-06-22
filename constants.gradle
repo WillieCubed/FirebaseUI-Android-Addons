@@ -1,1 +1,4 @@
-project.ext.firebase_version = '9.4.0'
+project.ext {
+    play_services_version = '11.0.1'
+    support_library_version = '26.0.0-beta1'
+}
