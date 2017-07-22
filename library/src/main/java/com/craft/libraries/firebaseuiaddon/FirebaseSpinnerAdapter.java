@@ -105,7 +105,7 @@ public abstract class FirebaseSpinnerAdapter<T> extends FirebaseListAdapter<T> i
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(mActivity).inflate(mDropDownLayout, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(mDropDownLayout, parent, false);
         }
         T model = getItem(position);
         populateDropdownView(convertView, model, position);
