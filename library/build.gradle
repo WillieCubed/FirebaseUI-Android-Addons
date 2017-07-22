@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply from: '../constants.gradle'
 
+version = '1.0.0'
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
@@ -9,7 +11,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "$version"
 
     }
     buildTypes {
@@ -21,12 +23,12 @@ android {
 }
 
 dependencies {
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 
-    compile "com.android.support:appcompat-v7:$support_library_version"
-    compile "com.android.support:recyclerview-v7:$support_library_version"
-    compile 'com.firebaseui:firebase-ui-database:2.0.1'
+    api "com.android.support:appcompat-v7:$support_library_version"
+    api "com.android.support:recyclerview-v7:$support_library_version"
+    api 'com.firebaseui:firebase-ui-database:2.1.0'
 }
