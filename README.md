@@ -6,7 +6,7 @@ As for right now, there is no iOS equivalent. If you have any desire to create o
 please notify me so I can link to it.
 
 ## Usage
-### `FirebaseSpinnerAdapter`
+### FirebaseSpinnerAdapter
 ```java
 public class MyActivity extends AppCompatActivity {
     
@@ -46,13 +46,13 @@ dependencies {
     implementation 'com.craft.libraries:firebaseui-android-addons:1.0.0'
 }
 ```
-Note: using "compile" is deprecated in the latest version of Gradle build plugin. Use 
+Note: using "compile" is deprecated in the latest version (3.0.0) of Gradle build plugin.
 
 ## Dependencies
 FirebaseUI Addons has the following transitive dependency on the Firebase SDK:
 ```
 firebaseui-android-addons
-  |--- com.firebaseui:firebase-ui-database:2.0.1
+  |--- com.firebaseui:firebase-ui-database:2.1.0
     |--- com.google.firebase:firebase-database:11.0.1
 
 ```
