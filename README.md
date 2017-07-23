@@ -1,5 +1,5 @@
 # FirebaseUI Addons - Some more UI bindings for Firebase
-[![Download on Bintray](https://api.bintray.com/packages/craftco/libaries/firebaseui-android-addons/images/download.svg?version=1.0.0)](https://bintray.com/craftco/libaries/firebaseui-android-addons/1.0.0/link)
+[![Download](https://api.bintray.com/packages/thecraftkid/CraftApps/firebaseui-android-addons/images/download.svg)](https://bintray.com/thecraftkid/CraftApps/firebaseui-android-addons/_latestVersion)
 
 FirebaseUI-Android-Addons is a set of non-essential addons to Firebase's open source library for Android, [FirebaseUI-Android](https://github.com/firebase/FirebaseUI-Android).
 FirebaseUI Addons allows you to back UI views such as Spinners to the [Firebase Realtime Database](https://firebase.google.com/docs/database/).
