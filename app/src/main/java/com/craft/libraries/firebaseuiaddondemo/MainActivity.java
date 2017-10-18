@@ -5,11 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.craft.libraries.firebaseuiaddon.FirebaseSpinnerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+/**
+ * An {@link android.app.Activity} that demostrates usage of this library
+ */
 public class MainActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabaseRoot;
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupTestData();
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinner = findViewById(R.id.spinner);
         spinner.setAdapter(new FirebaseSpinnerAdapter<FavoriteColor>(this, FavoriteColor.class,
                 android.R.layout.simple_spinner_item, android.R.layout.simple_spinner_dropdown_item,
                 colorReference) {
@@ -34,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            protected void populateDropdownView(View dropdownView, FavoriteColor color, int position) {
+            protected void populateDropdownView(View dropdownView, FavoriteColor color,
+                    int position) {
                 ((TextView) dropdownView.findViewById(android.R.id.text1))
                         .setText(color.getLongName());
             }
@@ -45,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
      * Used to push some dummy items into the Firebase Realtime Database
      */
     private void setupTestData() {
-        String[] shortNames = new String[]{
+        String[] shortNames = new String[] {
                 "Red, Blue, Green, Orange"
         };
-        String[] longNames = new String[]{"Royal Red", "Breezy Blue", "Easy Evergreen",
-                "Outrageous Orange"
+        String[] longNames = new String[] {
+                "Royal Red", "Breezy Blue", "Easy Evergreen", "Outrageous Orange"
         };
         for (int i = 0; i < shortNames.length; i++) {
             mDatabaseRoot.child("favoriteColors").push()
