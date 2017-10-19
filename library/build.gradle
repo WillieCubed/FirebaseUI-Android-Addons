@@ -5,7 +5,6 @@ version = '1.0.0'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
 
     defaultConfig {
         minSdkVersion 16
@@ -14,6 +13,7 @@ android {
         versionName "$version"
 
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -30,5 +30,5 @@ dependencies {
 
     api "com.android.support:appcompat-v7:$support_library_version"
     api "com.android.support:recyclerview-v7:$support_library_version"
-    api 'com.firebaseui:firebase-ui-database:2.1.0'
+    api 'com.firebaseui:firebase-ui-database:3.0.0'
 }
