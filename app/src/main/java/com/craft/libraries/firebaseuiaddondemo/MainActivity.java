@@ -5,12 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 import com.craft.libraries.firebaseuiaddon.FirebaseSpinnerAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 /**
- * An {@link android.app.Activity} that demostrates usage of this library
+ * An {@link android.app.Activity} that demonstrates usage of this library.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -26,32 +28,36 @@ public class MainActivity extends AppCompatActivity {
 
         setupTestData();
 
-        Spinner spinner = findViewById(R.id.spinner);
-        spinner.setAdapter(new FirebaseSpinnerAdapter<FavoriteColor>(this, FavoriteColor.class,
-                android.R.layout.simple_spinner_item, android.R.layout.simple_spinner_dropdown_item,
-                colorReference) {
+        FirebaseListOptions<FavoriteColor> options = new FirebaseListOptions.Builder<FavoriteColor>()
+                .setLayout(android.R.layout.simple_spinner_item)
+                .setQuery(colorReference, FavoriteColor.class)
+                .build();
+        FirebaseSpinnerAdapter adapter = new FirebaseSpinnerAdapter<FavoriteColor>(options,
+                android.R.layout.simple_spinner_dropdown_item) {
             @Override
             protected void populateView(View view, FavoriteColor color, int position) {
-                ((TextView) view.findViewById(android.R.id.text1)).setText(color.getName());
+                ((TextView) view.findViewById(android.R.id.text1)).setText(color.getColor());
             }
 
             @Override
             protected void populateDropdownView(View dropdownView, FavoriteColor color,
-                    int position) {
+                                                int position) {
                 ((TextView) dropdownView.findViewById(android.R.id.text1))
                         .setText(color.getLongName());
             }
-        });
+        };
+        Spinner spinner = findViewById(R.id.spinner);
+        spinner.setAdapter(adapter);
     }
 
     /**
-     * Used to push some dummy items into the Firebase Realtime Database
+     * Pushes some dummy items into the Firebase Realtime Database.
      */
     private void setupTestData() {
-        String[] shortNames = new String[] {
+        String[] shortNames = new String[]{
                 "Red, Blue, Green, Orange"
         };
-        String[] longNames = new String[] {
+        String[] longNames = new String[]{
                 "Royal Red", "Breezy Blue", "Easy Evergreen", "Outrageous Orange"
         };
         for (int i = 0; i < shortNames.length; i++) {
