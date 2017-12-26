@@ -1,17 +1,16 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 apply from: '../constants.gradle'
 
-version = '1.0.0'
+version = '2.0.0'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 26
-        versionCode 1
-        versionName "$version"
-
+        targetSdkVersion 27
     }
 
     buildTypes {
@@ -28,7 +27,88 @@ dependencies {
     })
     testImplementation 'junit:junit:4.12'
 
-    api "com.android.support:appcompat-v7:$support_library_version"
-    api "com.android.support:recyclerview-v7:$support_library_version"
-    api 'com.firebaseui:firebase-ui-database:3.0.0'
+    implementation "com.android.support:appcompat-v7:$support_library_version"
+    implementation "com.android.support:recyclerview-v7:$support_library_version"
+    api 'com.firebaseui:firebase-ui-database:3.1.0'
+    api 'com.firebaseui:firebase-ui-firestore:3.1.0'
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+group = 'com.craft.libraries'
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            name 'FirebaseUI-Android Addons'
+            description 'An additional set of Firebase UI bindings for Android, based on the FirebaseUI-Android library Edit.'
+            url 'https://github.com/TheCraftKid/firebaseui-android-addons'
+            inceptionYear '2017'
+
+            packaging 'aar'
+            groupId 'com.craft.libraries'
+            artifactId 'firebase-ui-addons'
+            version version
+
+            licenses {
+                license {
+                    name 'The MIT License (MIT)'
+                    url 'https://opensource.org/licenses/MIT'
+                }
+            }
+            scm {
+                connection 'https://github.com/CraftCompany/craft-essentials.git'
+                url 'https://github.com/CraftCompany/craft-essentials'
+
+            }
+            developers {
+                developer {
+                    id = 'TheCraftKid'
+                    name 'Willie Chalmers III'
+                }
+            }
+        }
+    }
+}
+
+Properties bintrayProperties = new Properties()
+bintrayProperties.load(project.rootProject.file('bintray.properties').newDataInputStream())
+
+bintray {
+    user = bintrayProperties.hasProperty('user') ?
+            bintrayProperties.getProperty('user') : System.getenv('BINTRAY_USER')
+    key = bintrayProperties.hasProperty('key') ?
+            bintrayProperties.getProperty('key') : System.getenv('BINTRAY_KEY')
+    configurations = ['archives']
+    pkg {
+        userOrg = 'CraftCompany'
+        repo = 'libraries'
+        name = 'firebase-ui-addons'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/CraftCompany/craft-essentials.git'
+        publish = true
+        version {
+            name = version
+            released = new Date()
+            vcsTag = "v$version"
+        }
+    }
 }
