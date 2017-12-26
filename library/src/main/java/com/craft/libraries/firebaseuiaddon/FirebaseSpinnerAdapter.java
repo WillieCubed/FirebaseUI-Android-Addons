@@ -23,7 +23,7 @@ import com.firebase.ui.database.FirebaseListOptions;
  *      public class MyActivity extends AppCompatActivity {
  *          {@literal @}Override
  *          public void onCreate(Bundle savedInstanceState) {
- *              Spinner spinner = (Spinner) findViewById(R.id.spinner);
+ *              Spinner spinner = findViewById(R.id.spinner);
  *              DatabaseReference colorReference = FirebaseDatabase.getInstance().getReference()
  *                      .child("colors");
  *              FirebaseListOptions options = new FirebaseListOptions.Builder()
