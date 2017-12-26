@@ -1,4 +1,4 @@
 project.ext {
-    play_services_version = '11.4.1'
-    support_library_version = '26.1.0'
+    play_services_version = '11.8.0'
+    support_library_version = '27.0.2'
 }
